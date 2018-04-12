@@ -1,0 +1,48 @@
+#!/bin/bash
+
+yum -y install nagios
+
+systemctl enable nagios
+systemctl enable nagios
+systemctl start nagios
+
+setenforce 0
+
+yum install -y httpd
+systemctl enable httpd
+systemctl start httpd
+
+yum install -y nrpe
+yum -y enable nrpe
+yum enable nrpe
+yum start nrpe
+
+yum install nagios-plugins-all
+yum install -y nagios-plugins-nrpe
+
+htpasswd -c /etc/nagios/passwd nagiosadmin
+
+###Then type in your password###
+
+cd /usr/lib64/nagios
+cd plugins
+ls
+ls -la
+
+./check_nrpe -H 10.142.0.4
+
+systemctl restart nagios
+
+grep nagios /var/log/nagios
+grep nagios /var/log/nagios/nagios.log 
+tail /var/log/nagios/nagios.log 
+
+/usr/sbin/nagios -v /etc/nagios/nagios.cfg
+
+### I recieved a startup error for my Nagios server when I went to test it. If this happens
+### Then I need to type the following three commands to reenable Nagios to get 
+### It up and running again. They may not ever be necessary, but they were in my case.###
+
+systemctl enable nagios
+systemctl start nagios
+setenforce 0
