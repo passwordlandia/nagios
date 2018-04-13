@@ -35,8 +35,4 @@ systemctl restart nagios
 
 /usr/sbin/nagios -v /etc/nagios/nagios.cfg
 
-### I recieved a startup error for my Nagios server when I went to test it. If this happens
-### Then I need to type the following three commands to reenable Nagios to get 
-### It up and running again. They may not ever be necessary, but they were in my case.###
-
 systemctl restart nagios
