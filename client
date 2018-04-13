@@ -1,16 +1,10 @@
 #!/bin/bash
 
 apt -get install nagios-plugins
-apt get install nagios-plugins
-apt-get install nagios-plugins
 apt-get install nagios-nrpe-server
 
 cp /etc/nagios/nrpe.cfg /etc/nagios/nrpe.cfg.bak
 
 systemctl restart nagios-nrpe-server
-apt -get install nagios-plugins
 
-systemctl restart nagios-nrpe-server
-cat /etc/nagios/nrpe.cfg | grep allowed_hosts
 
-systemctl restart nagios-nrpe-server
