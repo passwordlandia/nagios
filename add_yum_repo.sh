@@ -1,8 +1,7 @@
 #!/bin/bash
 # this is a script to add a yum repo on a given server.
 
-ip="104.154.86.19"                                                    # Please replace with your own IP
-
+ip="10.142.0.17"                                                    
 echo "[nti-320]
 name=Extra Packages for Centos from NTI-320 7 - $basearch
 #baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch <- example epel repo
