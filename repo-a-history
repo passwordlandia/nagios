@@ -27,3 +27,5 @@ sed -i 's/^/#/' /etc/httpd/conf.d/welcome.conf
 chown -R apache:apache /repos/
 
 systemctl restart httpd
+
+setenforce 0
