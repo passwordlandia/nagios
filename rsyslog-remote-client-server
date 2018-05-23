@@ -1,5 +1,14 @@
 #!/bin/bash
 
+yum -y install net-tools
+
+sed -15i 's/#$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
+sed -16i 's/#$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
+sed -19i 's/#$ModLoad imtcp/$ModLoad imtcp/g' /etc/rsyslog.conf
+sed -20i 's/#$InputTCPServerRun 514/$InputTCPServerRun 514/g' /etc/rsyslog.conf
+
+systemctl restart rsyslog.service
+
 sed -92i 's/*.info;mail.none;authpriv.none;cron.none   @10.142.0.26/' /etc/rsyslog.conf
 
 systemctl restart rsyslog.service
