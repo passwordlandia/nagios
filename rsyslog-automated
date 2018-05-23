@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sed -15i 's/#$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
 sed -16i 's/#$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
 sed -19i 's/#$ModLoad imtcp/$ModLoad imtcp/g' /etc/rsyslog.conf
