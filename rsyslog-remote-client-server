@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sed -92i 's/*.info;mail.none;authpriv.none;cron.none   @10.142.0.26/' /etc/rsyslog.conf
+
+systemctl restart rsyslog.service
+
+
+echo "*.info;mail.none;authpriv.none;cron.none   @10.142.0.26" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
