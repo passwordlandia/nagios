@@ -51,6 +51,22 @@ systemctl enable snmpd
 systemctl start snmpd
 sed -i 's,/dev/hda1,/dev/sda1,'  /etc/nagios/nrpe.cfg
 
+cp /etc/nagios/nrpe.cfg /etc/nagios/nrpe.cfg.bak
+sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, nrpedummyip/g' /etc/nagios/nrpe.cfg
+
+systemctl restart nagios-nrpe-server
+
+yum -y install net-tools
+
+sed -i 's/#$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
+sed -i 's/#$UDPServerRun 514/$UDPServerRun 514/g' /etc/rsyslog.conf
+sed -i 's/#$ModLoad imtcp/$ModLoad imtcp/g' /etc/rsyslog.conf
+sed -i 's/#$InputTCPServerRun 514/$InputTCPServerRun 514/g' /etc/rsyslog.conf
+
+systemctl restart rsyslog.service
+
+echo "*.info;mail.none;authpriv.none;cron.none   @rsyslogdummyip" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
+
 %postun
 rm /thisworked
 rm /etc/nrpe.d/nti320.cfg
