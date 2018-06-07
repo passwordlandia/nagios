@@ -1,13 +1,9 @@
 #!/bin/bash
 
-###prior to running this command I need to have my server already written in my gcloud init file,###
-###and add it in to there. I also need to define my IP's better.####
+/Users/passwordlandia/nagios/scp/generate_config.sh $1 $2
 
-/Users/pippy/generate_config.sh $1 $2
-
-gcloud compute copy-files $1.cfg paulierev1775@:nagios-scp-server/etc/nagios/conf.d
-
+gcloud compute scp ~/$1.cfg \nagios-a:/etc/nagios/conf.d --ssh-key-file=/Users/paulierev1775/ .ssh/google_compute_engine --zone us-east1-b
 usermod -a -G nagios paulierev1775
 chmod 770 /etc/nagios/conf.d
 
-gcloud compute ssh paulierev1775@nagios-scp-server "sudo /usr/sbin/nagios -v /etc/nagios/nagios.cfg"
+gcloud compute ssh paulierev1775@nagios-a "sudo /usr/sbin/nagios -v /etc/nagios/nagios.cfg"
