@@ -44,3 +44,6 @@ cp /etc/php.ini /etc/php.ini.orig
 sed -i 's/;date.timezone =/date.timezone = America\/Regina/' /etc/php.ini
 
 setenforce 0
+
+
+systemctl restart httpd
