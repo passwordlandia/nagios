@@ -1,0 +1,23 @@
+#!/bin/bash
+
+yum -y install rpm-build make gcc git                                        
+mkdir -p /root/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}                     
+                                                                              
+cd ~/
+echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros                        
+cd ~/rpmbuild/SOURCES
+git clone https://github.com/NagiosEnterprises/nrpe.git                     
+git clone https://github.com/NagiosEnterprises/nagioscore.git                
+
+tar -czvf nrpe-3.1.tar.gz /root/rpmbuild/SOURCES/nrpe                        
+tar -czvf nagioscore-4.3.1.tar.gz /root/rpmbuild/SOURCES/nagioscore          
+
+mv nagioscore nagioscore-4.3.1                                                
+mv nrpe nrpe-3.1                                                             
+mkdir nagioscore                                                              
+mkdir nrpe
+mv nagioscore-4.3.1 nagioscore
+mv nrpe-3.1 nrpe
+
+cd ../SPECS                                                                  
+cp /usr/share/vim/vimfiles/template.spec .
