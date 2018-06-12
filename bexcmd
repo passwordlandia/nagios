@@ -1,0 +1,9 @@
+#!/bin/bash
+
+gcloud compute ssh paulierev1775@]INSTANCE 
+[--command=COMMAND] [--container=CONTAINER] 
+[--dry-run] [--force-key-file-overwrite] 
+[--plain] [--ssh-flag=SSH_FLAG] 
+[--ssh-key-file=SSH_KEY_FILE] 
+[--strict-host-key-checking=STRICT_HOST_KEY_CHECKING] 
+[--zone=ZONE] [GCLOUD_WIDE_FLAG …] [-- SSH_ARGS …]
