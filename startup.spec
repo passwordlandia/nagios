@@ -52,7 +52,7 @@ systemctl start snmpd
 sed -i 's,/dev/hda1,/dev/sda1,'  /etc/nagios/nrpe.cfg
 
 cp /etc/nagios/nrpe.cfg /etc/nagios/nrpe.cfg.bak
-sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, nrpedummyip/g' /etc/nagios/nrpe.cfg
+sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, $nrpeip/g' /etc/nagios/nrpe.cfg
 
 systemctl restart nagios-nrpe-server
 
@@ -65,7 +65,7 @@ sed -i 's/#$InputTCPServerRun 514/$InputTCPServerRun 514/g' /etc/rsyslog.conf
 
 systemctl restart rsyslog.service
 
-echo "*.info;mail.none;authpriv.none;cron.none   @rsyslogdummyip" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
+echo "*.info;mail.none;authpriv.none;cron.none   @$rsyslogip" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
 
 %postun
 rm /thisworked
