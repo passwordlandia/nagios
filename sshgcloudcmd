@@ -7,3 +7,6 @@ for $ip in $(gcloud compute instances list | awk '{print $11}': do
   gcloud compute ssh paulierev1775@"hostname or $ip #I will populate this when I use it."
   
   done
+
+
+#############https://linuxacademy.com/blog/linux/ssh-and-scp-howto-tips-tricks/ What a great website for ssh and scp#####
