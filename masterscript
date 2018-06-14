@@ -2,6 +2,11 @@
 
 yum -y install wget
 
-###scp this next lines file later on for my nti-310 class servers#############
 wget https://raw.githubusercontent.com/passwordlandia/ldap/master/startupscriptmaster/masterscript
 
+for $ip in $( gcloud compute instances list | awk '{print $11}'): do
+  machinename=$( gcloud compute instances list | grep $ip |awk '{print $2}')
+  generate_config.sh $machinename $ip
+done
+
+gcloud compute scp *.cfg /etc/nagios/conf.d
