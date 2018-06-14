@@ -1,0 +1,5 @@
+#!/bin/bash 
+
+for isntance in $(gcloud compute instances list | awk '{print $1}'); do
+   gcloud compute ssh paulierev1775@$instance ""
+done
