@@ -1,12 +1,14 @@
 #!/bin/bash
 
-for $ip in $(gcloud compute instances list | awk '{print $11}'): do
-  gcloud scp $ip : /var/lib/conf.d
-  
+for $ip in $( gcloud compute instances list | awk '{print $11}'): do
+  machinename=$( gcloud compute instances list | grep $ip |awk '{print $2}')
+  generate_config.sh $machinename $ip
+done 
+
 for $ip in $(gcloud compute instances list | awk '{print $11}': do
   gcloud compute ssh paulierev1775@"hostname or $ip #I will populate this when I use it."
   
-  done
+done
 
 
 #############https://linuxacademy.com/blog/linux/ssh-and-scp-howto-tips-tricks/ What a great website for ssh and scp#####
