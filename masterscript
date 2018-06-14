@@ -1,0 +1,7 @@
+#!/bin/bash
+
+yum -y install wget
+
+###scp this next lines file later on for my nti-310 class servers#############
+wget https://raw.githubusercontent.com/passwordlandia/ldap/master/startupscriptmaster/masterscript
+
