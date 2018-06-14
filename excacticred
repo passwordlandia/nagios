@@ -1,0 +1,147 @@
+#!/bin/bash
+
+###DATA QUERY TO LIST HOST ID##################################################################
+
+php -q add_data_query.php --list-hosts
+
+###############END OF HOST ID LIST#############################################################
+
+
+#####DATA QUERY FOR JUST THE CACTI SERVER######################################################
+
+php -q add_data_query.php --host-id=3 --data-query-id=1 --reindex-method=None
+
+###END OF DATA QUERY############################################################################
+
+
+#############ADD GRAPH NET-SNMP - LOAD AVERAGE #################################################
+
+php -q add_graphs.php --list-graph-templates --host-template-id=19
+
+#########HERE IS THE OUTPUT OF ALL OF MY GRAPH-TEMPLATES FOR MY CACTI SERVER####################
+
+[root@cacti-final-server cli]# php -q add_graphs.php --list-graph-templates
+Known Graph Templates:(id, name)
+1       Cisco - CPU Usage
+2       Interface - Traffic (bits/sec)
+3       Interface - Errors/Discards
+4       Interface - Unicast Packets
+5       Interface - Non-Unicast Packets
+6       Interface - Traffic (bytes/sec)
+7       Interface - Traffic (bits/sec, 95th Percentile)
+8       Interface - Traffic (bits/sec, Total Bandwidth)
+9       Interface - Traffic (bytes/sec, Total Bandwidth)
+10      Interface - Multicast Packets (Legacy)
+11      Interface - Broadcast Packets (Legacy)
+12      Unix - Ping Latency
+13      SNMP - Generic OID Template
+14      Unix - Processes
+15      Unix - Load Average
+16      Unix - Logged in Users
+17      Linux - Memory Usage
+18      Unix - Available Disk Space
+19      Net-SNMP - Load Average
+20      Net-SNMP - Memory Usage
+21      Host MIB - Logged in Users
+22      Host MIB - Processes
+23      Net-SNMP - CPU Utilization
+24      Net-SNMP - Interrupts
+25      Net-SNMP - Context Switches
+26      Net-SNMP - Combined SCSI Disk I/O
+27      Net-SNMP - Combined SCSI Disk Bytes
+28      Net-SNMP - Available Disk Space
+29      Host MIB - Available Disk Space
+30      Host MIB - CPU Utilization
+31      Net-SNMP - Device I/O - Bytes Read/Written
+32      Net-SNMP - Device I/O - Load Averages
+33      Net-SNMP - Device I/O - Reads/Writes
+
+#######################SUBSTITUTE THE NUMBER FOR THE GRAPH YOU WANT TO ADD ACCORDING TO YOUR SERVER###################
+#######################END GRAPHS SECTION#############################################################################
+
+#####ADD DEVICES IN MY NETWORK, STARTING WITH CACTI SERVER, THEN NTI-310 DEVICES THEN NTI-320 REMAINING DEVICES#######
+
+php -q add_device.php --description="cactifinalserver" --ip="10.142.0.14" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1" --username="admin" --password=P@ssw0rd1!
+
+php -q add_device.php --description="django-final-server" --ip="10.142.0.10" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+php -q add_device.php --description="ldap-final-server" --ip="10.142.0.4" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="ldapubnfscl-a-final" --ip="10.142.6" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="ldapubnfscl-b-final" --ip="10.142.0.7" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="mailserv-final" --ip="10.142.0.11" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="nfs-final-server" --ip="10.142.0.5" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="postgres-final-server" --ip="10.142.0.9" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="rsyslog-final-server" --ip="10.142.0.15" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="build-final-server" --ip="10.142.0.17" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="nagios-repo-a" --ip="10.142.0.19" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="nagios-final-server" --ip="10.142.0.3" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+##################END OF ADDING DEVICES########################################################################################
+
+###########################MY FINAL OUTLOOK FOR CACTI SERVER WILL LOOK SOMETHING LIKE THIS#####################################
+
+#!/bin/bash
+
+echo -e"php -q add_device.php --description="cactifinalserver" --ip="10.142.0.14" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1" --username="admin" --password=P@ssw0rd1!
+
+php -q add_device.php --description="django-final-server" --ip="10.142.0.10" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+php -q add_device.php --description="ldap-final-server" --ip="10.142.0.4" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="ldapubnfscl-a-final" --ip="10.142.6" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="ldapubnfscl-b-final" --ip="10.142.0.7" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="mailserv-final" --ip="10.142.0.11" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="nfs-final-server" --ip="10.142.0.5" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="postgres-final-server" --ip="10.142.0.9" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="rsyslog-final-server" --ip="10.142.0.15" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="build-final-server" --ip="10.142.0.17" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="nagios-repo-a" --ip="10.142.0.19" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+shell>php -q add_device.php --description="nagios-final-server" --ip="10.142.0.3" --template=1 --version"2" --community="public"
+--port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+
+#adds my device
+
+php -q add_graphs.php --list-graph-templates --host-template-id=19
+
+#adds my graph" >> /var/lib/cacti/cli/
+
