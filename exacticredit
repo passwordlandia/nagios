@@ -61,87 +61,62 @@ Known Graph Templates:(id, name)
 
 #####ADD DEVICES IN MY NETWORK, STARTING WITH CACTI SERVER, THEN NTI-310 DEVICES THEN NTI-320 REMAINING DEVICES#######
 
-php -q add_device.php --description="cactifinalserver" --ip="10.142.0.2" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1" --username="admin" --password=P@ssw0rd1!
+php -q /var/lib/cacti/cli/add_device.php --description="cactifinalserver" --ip="10.142.0.2" 
 
-php -q add_device.php --description="django-final-server" --ip="10.142.0.10" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="django-final-server" --ip="10.142.0.10" --template=1
 
-php -q add_device.php --description="ldap-final-server" --ip="10.142.0.4" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="ldap-final-server" --ip="10.142.0.4" --template=1 
 
-shell>php -q add_device.php --description="ldapubnfscl-a-final" --ip="10.142.6" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+sphp -q /var/lib/cacti/cli/add_device.php  --description="ldapubnfscl-a-final" --ip="10.142.6" --template=1 
 
-shell>php -q add_device.php --description="ldapubnfscl-b-final" --ip="10.142.0.7" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="ldapubnfscl-b-final" --ip="10.142.0.7" --template=1 
 
-shell>php -q add_device.php --description="mailserv-final" --ip="10.142.0.11" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="mailserv-final" --ip="10.142.0.11" --template=1 
 
-shell>php -q add_device.php --description="nfs-final-server" --ip="10.142.0.5" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="nfs-final-server" --ip="10.142.0.5" --template=1 
 
-shell>php -q add_device.php --description="postgres-final-server" --ip="10.142.0.9" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php --description="postgres-final-server" --ip="10.142.0.9" --template=1 
 
-shell>php -q add_device.php --description="rsyslog-final-server" --ip="10.142.0.15" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="rsyslog-final-server" --ip="10.142.0.15" --template=1 
 
-shell>php -q add_device.php --description="build-final-server" --ip="10.142.0.17" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="build-final-server" --ip="10.142.0.17" --template=1 
 
-shell>php -q add_device.php --description="nagios-repo-a" --ip="10.142.0.19" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="nagios-repo-a" --ip="10.142.0.19" --template=1 
 
-shell>php -q add_device.php --description="nagios-final-server" --ip="10.142.0.3" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
-
+php -q /var/lib/cacti/cli/add_device.php  --description="nagios-final-server" --ip="10.142.0.3" --template=1 
 ##################END OF ADDING DEVICES########################################################################################
 
 ###########################MY FINAL OUTLOOK FOR CACTI SERVER WILL LOOK SOMETHING LIKE THIS#####################################
 
 #!/bin/bash
 
-echo -e"php -q add_device.php --description="cactifinalserver" --ip="10.142.0.2" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1" --username="admin" --password=P@ssw0rd1!
+php -q add_device.php --description="cactifinalserver" --ip="10.142.0.2" --template=1 
 
-php -q add_device.php --description="django-final-server" --ip="10.142.0.10" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="django-final-server" --ip="10.142.0.10" --template=1
 
-php -q add_device.php --description="ldap-final-server" --ip="10.142.0.4" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="ldap-final-server" --ip="10.142.0.4" --template=1 
 
-shell>php -q add_device.php --description="ldapubnfscl-a-final" --ip="10.142.6" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+sphp -q /var/lib/cacti/cli/add_device.php  --description="ldapubnfscl-a-final" --ip="10.142.6" --template=1 
 
-shell>php -q add_device.php --description="ldapubnfscl-b-final" --ip="10.142.0.7" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="ldapubnfscl-b-final" --ip="10.142.0.7" --template=1 
 
-shell>php -q add_device.php --description="mailserv-final" --ip="10.142.0.11" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="mailserv-final" --ip="10.142.0.11" --template=1 
 
-shell>php -q add_device.php --description="nfs-final-server" --ip="10.142.0.5" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="nfs-final-server" --ip="10.142.0.5" --template=1 
 
-shell>php -q add_device.php --description="postgres-final-server" --ip="10.142.0.9" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php --description="postgres-final-server" --ip="10.142.0.9" --template=1 
 
-shell>php -q add_device.php --description="rsyslog-final-server" --ip="10.142.0.15" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="rsyslog-final-server" --ip="10.142.0.15" --template=1 
 
-shell>php -q add_device.php --description="build-final-server" --ip="10.142.0.17" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="build-final-server" --ip="10.142.0.17" --template=1 
 
-shell>php -q add_device.php --description="nagios-repo-a" --ip="10.142.0.19" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="nagios-repo-a" --ip="10.142.0.19" --template=1 
 
-shell>php -q add_device.php --description="nagios-final-server" --ip="10.142.0.3" --template=1 --version"2" --community="public"
---port"161" --timeout"500" --avail"snmp" --ping_retries="1"
+php -q /var/lib/cacti/cli/add_device.php  --description="nagios-final-server" --ip="10.142.0.3" --template=1 
 
-#adds my device
+###########################adds my devices#######################################################
 
-php -q add_graphs.php --list-graph-templates --host-template-id=19
+php -q add_graphs.php --list-graph-templates --host-template-id=19  >> /var/lib/cacti/cli/
 
-#adds my graph" >> /var/lib/cacti/cli/
+##########################add my data queries###################################################
 
