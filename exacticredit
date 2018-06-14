@@ -61,7 +61,7 @@ Known Graph Templates:(id, name)
 
 #####ADD DEVICES IN MY NETWORK, STARTING WITH CACTI SERVER, THEN NTI-310 DEVICES THEN NTI-320 REMAINING DEVICES#######
 
-php -q add_device.php --description="cactifinalserver" --ip="10.142.0.14" --template=1 --version"2" --community="public"
+php -q add_device.php --description="cactifinalserver" --ip="10.142.0.2" --template=1 --version"2" --community="public"
 --port"161" --timeout"500" --avail"snmp" --ping_retries="1" --username="admin" --password=P@ssw0rd1!
 
 php -q add_device.php --description="django-final-server" --ip="10.142.0.10" --template=1 --version"2" --community="public"
@@ -103,7 +103,7 @@ shell>php -q add_device.php --description="nagios-final-server" --ip="10.142.0.3
 
 #!/bin/bash
 
-echo -e"php -q add_device.php --description="cactifinalserver" --ip="10.142.0.14" --template=1 --version"2" --community="public"
+echo -e"php -q add_device.php --description="cactifinalserver" --ip="10.142.0.2" --template=1 --version"2" --community="public"
 --port"161" --timeout"500" --avail"snmp" --ping_retries="1" --username="admin" --password=P@ssw0rd1!
 
 php -q add_device.php --description="django-final-server" --ip="10.142.0.10" --template=1 --version"2" --community="public"
