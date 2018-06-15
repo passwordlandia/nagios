@@ -1,0 +1,191 @@
+#!/bin/bash
+
+#!/bin/bash
+
+yum -y install google-cloud-sdk
+google-cloud-sdk-app-engine-python
+gcloud init
+
+yum -y install python-pip
+pip install --upgrade pip
+pip install oauth2client
+pip install --upgrade google-api-python-client
+
+yum install git -y
+
+git clone https://github.com/passwordlandia/ldap.git
+git clone https://github.com/passwordlandia/nagios.git
+git clone https://github.com/nic-instruction/hello-nti-310.git
+
+####NAGIOS SERVER START#####
+gcloud compute instances create nagios-final-server \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/nagios/nagiosfinalserver.sh"
+    
+nagiosip=$(gcloud compute instances list | grep nagios-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $nagiosip > nagiosip.txt
+####NAGIOS SERVER END#####
+
+####CACTI SERVER START#####
+gcloud compute instances create cacti-final-server \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/nagios/cactifinalserver.sh"
+    
+cactiip=$(gcloud compute instances list | grep cacto-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $cactiip > cactiip.txt
+####CACTO SERVER END#####
+
+####SYSLOG SERVER START#####
+gcloud compute instances create syslog-final-server \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/nagios/syslogfinalserver.sh"
+    
+syslogip=$(gcloud compute instances list | grep syslog-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $syslogip > syslogip.txt
+####SYSLOG SERVER END#####
+
+####BUILD SERVER START#####
+gcloud compute instances create build-final-server \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/nagios/buildfinalserver.sh"
+    
+buildip=$(gcloud compute instances list | grep build-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $buildip > buildip.txt
+####BUILD SERVER END#####
+
+####LDAP SERVER START#####
+gcloud compute instances create ldap-final-server \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/ldap/startupscriptmaster/ldapstartupscript.sh"
+    
+ldapip=$(gcloud compute instances list | grep ldap-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $ldapip > ldapip.txt
+####LDAP SERVER END#####
+
+#####NFS SERVER START####
+gcloud compute instances create nfs-final-server \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/ldap/startupscriptmaster/nfsstartupscript.sh"
+    
+nfsip=$(gcloud compute instances list | grep nfs-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $nfsip > nfsip.txt
+#####NFS SERVER END#####
+
+####POSTGRES SERVER START#####
+gcloud compute instances create postgres-final-server\
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/ldap/startupscriptmaster/postgresstartupscript.sh"
+
+postgresip=$(gcloud compute instances list | grep postgres-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $postgresip > postgresip.txt
+####POSTGRES SERVER END####
+
+####DJANGO SERVER START####
+gcloud compute instances create django-final-server \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/ldap/startupscriptmaster/djangoserverstartupscript.sh"
+    
+postgresip=$(gcloud compute instances list | grep django-final-server | awk '{ print $4 }' | tail -1) 
+
+echo $djangoip > djangoip.txt
+####DJANGO SERVER END####
+
+####UBNFS CLIENT A START#####
+gcloud compute instances create ldapubnfscl-a-final \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family ubuntu-1604-lts \
+    --image-project ubuntu-os-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/ldap/startupscriptmaster/ubnfsclientstartupscript.sh"
+
+####UBNFS CLIENT A END#####
+
+####UBNFS CLIENT B START#####
+gcloud compute instances create ldapubnfscl-b-final \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family ubuntu-1604-lts \
+    --image-project ubuntu-os-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/ldap/startupscriptmaster/ubnfsclientstartupscript.sh"
+
+####UBNFS CLIENT B END#####
+
+####MAILSERV#####
+gcloud compute instances create mailserv-final \
+    --zone us-east1-b \
+    --machine-type f1-micro \
+    --image-family centos-7 \
+    --image-project centos-cloud \
+    --tags "http-server","https-server" \
+    --metadata-from-file startup-script="/ldap/startupscriptmaster/mailservstartupscript.sh"
+    
+mailservip=$(gcloud compute instances list | grep mailserv-final | awk '{ print $4 }' | tail -1) 
+
+echo $mailservip > mailservip.txt
+####MAILSERV END#####
+
+##END OF SCRIPT####
+
+
+######################SPIN UP SERVERS###########################
+wget https://raw.githubusercontent.com/passwordlandia/ldap/master/startupscriptmaster/masterscript
+########################END SPIN UP########################
+
+####################BUILD RPM LINE WITH TAR FILE INTO SPECS##########################
+#######################WE DON'T HAVE THIS YET########################################
+
+###########PUSH REPO LINE######################
+for $ip in $( gcloud compute instances list | awk '{print $11}'): do
+  machinename=$( gcloud compute instances list | grep $ip |awk '{print $2}')
+  generate_config.sh $machinename $ip
+done
+##############END OF PUSH REPO STEP###################################
+
+#####yum -y install the new RPM on all your servers including your monitoring and trending servers##############
+
+####Generate nagios configs for each of your servers and push them to your nagios server########################
+gcloud compute scp *.cfg paulierev1775@nagiosip:/etc/nagios/conf.d
+##################################DONE WITH CONFIGS LINE ##################################
+
+####CHECK TO MAKE SURE THAT WE CAN MONITOR IT UNDER RSYSLOG USING TAIL -F /VAR/LOG/MESSAGES CTRL+C TO QUIT##########
