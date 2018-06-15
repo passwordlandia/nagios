@@ -1,17 +1,9 @@
 #!/bin/bash
 
-yum -y install rpm-build make gcc git
-yum -y install nfs-utils
-
+yum -y install rpm-build make gcc git                                        
 mkdir -p /root/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}                     
-
-yum -y install wget
+                                                                              
 cd ~/
-
-wget https://raw.githubusercontent.com/passwordlandia/nagios/master/startup.spec
-wget https://github.com/nic-instruction/hello-NTI-320/startup-0.1.tar.gz
-mv startup-0.1.tar.gz\?raw\=true startup-0.1.tar.gz
-
 echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros                        
 cd ~/rpmbuild/SOURCES
 git clone https://github.com/NagiosEnterprises/nrpe.git                     
