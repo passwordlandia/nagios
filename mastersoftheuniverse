@@ -172,16 +172,16 @@ echo $mailservip > mailservip.txt
 #######################WE DON'T HAVE THIS YET########################################
 
 ###########PUSH REPO LINE######################
-for $ip in $( gcloud compute instances list | awk '{print $11}'): do
+for ip in $( gcloud compute instances list | awk '{print $11}'); do
   machinename=$( gcloud compute instances list | grep $ip |awk '{print $2}')
-  generate_config.sh $machinename $ip
+  generate_config.sh $machinename ip
 done
 ##############END OF PUSH REPO STEP###################################
 
 #####yum -y install the new RPM on all your servers including your monitoring and trending servers##############
 
 ####Generate nagios configs for each of your servers and push them to your nagios server########################
-gcloud compute scp *.cfg paulierev1775@nagiosip:/etc/nagios/conf.d
+gcloud compute scp *.cfg paulierev1775@mastersoftheuniverse:/etc/nagios/conf.d
 ##################################DONE WITH CONFIGS LINE ##################################
 
 ####CHECK TO MAKE SURE THAT WE CAN MONITOR IT UNDER RSYSLOG USING TAIL -F /VAR/LOG/MESSAGES CTRL+C TO QUIT##########
