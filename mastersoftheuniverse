@@ -17,6 +17,9 @@ git clone https://github.com/passwordlandia/ldap.git
 git clone https://github.com/passwordlandia/nagios.git
 git clone https://github.com/nic-instruction/hello-nti-310.git
 
+
+######################SPIN UP SERVERS###########################
+
 ####NAGIOS SERVER START#####
 gcloud compute instances create nagios-final-server \
     --zone us-east1-b \
@@ -165,11 +168,6 @@ mailservip=$(gcloud compute instances list | grep mailserv-final | awk '{ print 
 echo $mailservip > mailservip.txt
 ####MAILSERV END#####
 
-##END OF SCRIPT####
-
-
-######################SPIN UP SERVERS###########################
-wget https://raw.githubusercontent.com/passwordlandia/ldap/master/startupscriptmaster/masterscript
 ########################END SPIN UP########################
 
 ####################BUILD RPM LINE WITH TAR FILE INTO SPECS##########################
