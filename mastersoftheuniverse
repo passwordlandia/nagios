@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 yum -y install google-cloud-sdk
 google-cloud-sdk-app-engine-python
 gcloud init
